@@ -1,0 +1,358 @@
+<div class="add-video-page">
+    {% extends 'halls/base.html' %}
+    {% block content %}
+    <style>
+        #random {
+            background-image: url('/static/img/banners/banner1.jpg');
+        }
+    </style>
+
+    <div class="main-header">
+        <div id="random">
+
+            <!-- Wether Section-->
+            <div class="weather_section">
+                <div class="weather_in_container">
+                    <a href="#"><img src="/static/img/sunset.svg"></a><br>
+                    <span class="actual_weather">17</span>
+                    <div class="top_dot"></div>
+                </div>
+            </div>
+            <!-- Durban Weather-->
+
+            <div class="setting_container animated"></div>
+
+            <div class="settings_container">
+                <a href="#"><img src="/static/img/settings.svg"></a><br>
+            </div>
+
+
+            <div class="time_container">
+                <span id="time"></span><br>
+                <span id="greetings"></span>
+            </div>
+
+            <div class="container">
+                <div class="my_form_container">
+
+                    <div class="url_form">
+                        <h2>Add Video {{ hall.title }}</h2>
+                        <form method="POST" id="submit_video">
+                            {% csrf_token %}
+                            {% load widget_tweaks %}
+                            <!-- {{ form.as_p }} -->
+                            {% for field in form %}
+                            <div class="form-group {% if field.errors %}alert alert-danger{% endif %}">
+                                {{ field.erros }}
+                                {{ field.label_tag }}
+                                {% render_field field class="form-control" %}
+                            </div>
+                            {% endfor %}
+                            <button type="submit" class="btn btn-primary">Add </button>
+                        </form>
+                        <br>
+                    </div>
+                    <!-- <h2>OR </h2> -->
+
+
+
+                    <div class="search_form">
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+
+                                <div class="form_title">
+                                    <p><span class="spanPrim">FIND</span> ANY VIDEO</p>
+                                    <p>FROM <span class="spanOrange">YOUTUBE</span></p>
+                                </div>
+
+                                <form method="POST">
+                                    <!-- {% csrf_token %} -->
+                                    {% for field in search_form %}
+                                    <div class="form-group {% if field.errors %}alert alert-danger{% endif %}">
+                                        {{ field.erros }}
+                                        {% render_field field class="form-control" %}
+                                        <!-- {{ search_form }} -->
+                                        <p class="search_icon"><img src="/static/img/search.svg"></p>
+                                    </div>
+
+                                    {% endfor %}
+                                </form>
+
+                                <div class="icons-container">
+                                    <div class="icons_each animated slideInLeft movie_icons">
+                                        <img src="/static/img/mainIcons/video_player.svg"><br>
+                                        <span class="icon-title">Movies</span>
+                                    </div>
+                                    <div class="icons_each web_icons">
+                                        <img src="/static/img/mainIcons/web.svg"><br>
+                                        <span class="icon-title">Web</span>
+                                    </div>
+                                    <div class="icons_each football_icon animated ">
+                                        <img src="/static/img/mainIcons/football.svg"><br>
+                                        <span class="icon-title">Football</span>
+                                    </div>
+                                    <div class="icons_each animated slideInRight music_icon">
+                                        <img src="/static/img/mainIcons/headphones.svg"><br>
+                                        <span class="icon-title">Music</span>
+                                    </div>
+                                    <div class="icons_each animated slideInRight comedy_icon">
+                                        <img src="/static/img/mainIcons/comedy.svg"><br>
+                                        <span class="icon-title">Comedy</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="container">
+            <div class="search_result_container">
+                <div id="search_results"></div>
+            </div>
+        </div>
+
+
+        <!-- The Centered Bar-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="bottom_bar"></div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+        <!-- Centered Ends-->
+
+
+        <!-- Tell  a Friend Section -->
+        <div class="container-fluid">
+            <div class="tell_a_friend_section">
+                <div class="friends_image" data-aos="fade-right" style="background:url('/static/img/friends.png')">
+                    {% comment %} <div class="vector_container "
+                        style="background:url('/static/img/tel_friend_vector.png')"></div> {% endcomment %}
+                </div>
+                <div class="tell_a_friedn_details" data-aos="fade-left">
+                    <div class="tell_a_friend_inner">
+                        <h1>Tell a <span>Friend</span></h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Vitae elementum curabitur vitae nunc sed velit dignissim
+                            sodales ut. Non curabitur gravida arcu ac tortor dignissim convallis. Nulla aliquet
+                            porttitor lacus luctus accumsan tortor.
+                            <br><br>
+                            Non arcu risus quis varius quam quisque id. Pretium lectus quam id leo in vitae. Maecenas
+                            sed enim ut sem viverra aliquet. Proin fermentum leo vel orci porta non. Nisl condimentum id
+                            venenatis a condimentum vitae sapien pellentesque.
+                        </p>
+                        <a class="tell_a">
+                            <button class="read_more">More</button>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Tell a Friend -->
+
+
+        <!-- Any Devices -->
+        <div class="any_device_main_container">
+            <div class="any_devices">
+                <div class="any_devices_div">
+                    <div class="any_devices_div_inner">
+                        <h1>Any <span style="color: #F9BD13;">Device</span></h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore
+                            et dolore magna aliqua. Vitae elementum curabitur vitae nunc sed velit dignissim sodales ut.
+                            Non
+                            curabitur gravida arcu ac tortor dignissim convallis. Nulla aliquet porttitor lacus luctus
+                            accumsan
+                            tortor.
+                            <br><br>
+
+                            Non arcu risus quis varius quam quisque id. Pretium lectus quam id leo in vitae. Maecenas
+                            sed
+                            enim
+                            ut sem viverra aliquet. Proin fermentum leo vel orci porta non. Nisl condimentum id
+                            venenatis a
+                            condimentum vitae sapien pellentesque.
+                        </p>
+                    </div>
+                </div>
+                <div class="any_devices_div">
+                    <div class="responsive_devices" style="background: url('/static/img/resp.png')"></div>
+                    <!-- <div class="any_device_vector animated bounce" id="right_device_vector"
+                    style="background: url('/static/img/devices_vector.svg')">
+                </div> -->
+                </div>
+            </div>
+
+            <div class="bottom_section">
+                <div class="inner_bottom_section">
+                    <div class="icon_container">
+                        <div class="send_container">
+                            <img src="/static/img/send.png">
+                        </div>
+                    </div>
+                    <div class="icon_container">
+                        <div class="form_container">
+                            <h1 class="sign_text">SIGN UP</h1>
+                            <form method="">
+                                <div class="form-container">
+                                    <input class="form-control" placeholder="Name">
+                                </div>
+                                <div class="form-container">
+                                    <input class="form-control" placeholder="Email Address">
+                                </div>
+                                <div class="form-container">
+                                    <button class="submit_button">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-section">
+            <p>&copy;ycreate.co.za</p>
+        </div>
+        <script>
+
+            ///  Time Function 
+            function checkTime(i) {
+                if (i < 10) {
+                    i = "0" + i;
+                }
+                return i;
+            }
+
+            function startTime() {
+                var today = new Date();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var s = today.getSeconds();
+                // add a zero in front of numbers<10
+                m = checkTime(m);
+                s = checkTime(s);
+
+                if (h < 12) {
+                    document.getElementById('greetings').innerHTML = "Good Morning";
+                }
+                else if (h > 12 && h < 16) {
+                    document.getElementById('greetings').innerHTML = "Good Aftrenoon";
+                }
+                else if (h > 16 && h < 19) {
+                    document.getElementById('greetings').innerHTML = "Good Evening";
+                }
+                else {
+                    document.getElementById('greetings').innerHTML = "Good Night";
+                }
+
+                document.getElementById('time').innerHTML = h + ":" + m;
+                t = setTimeout(function () {
+                    startTime()
+                }, 500);
+            }
+            startTime();
+
+            /// Random Image Functions 
+            function randombg() {
+                var random = Math.floor(Math.random() * 6) + 0;
+                var bigSize = [
+                    "url('/static/img/banners/banner4.jpg')",
+                    "url('/static/img/banners/banner2.jpg')",
+                    "url('/static/img/banners/banner3.jpg')",
+                    "url('/static/img/banners/banner5.jpg')",
+                    "url('/static/img/banners/banner7.jpg')",
+                    "url('/static/img/banners/banner6.jpg')"];
+                document.getElementById("random").style.backgroundImage = bigSize[random];
+            }
+
+            $(document).ready(function () {
+                var delayTimer;
+                $('#id_search_term').keyup(function () {
+                    clearTimeout(delayTimer)
+                    //$('#search_results').text('Loading....');
+                    $('#search_results').prepend('<img id="myLoader" src="/static/img/myLoader.gif" />');
+                    delayTimer = setTimeout(function () {
+                        var text = $('#id_search_term').val();
+                        $.ajax({
+                            url: '/video/search',
+                            data: {
+                                'search_term': text
+                            },
+                            dataType: 'json',
+                            success: function (data) {
+
+                                var results = ' ';
+                                $('#search_results').text('');
+                                results += '<div class="main_result_container" style="background:url(/static/img/icons_bg.svg);">'
+                                results += '<h1 class="searched_result_title">Search Results</h1>'
+                                results += '<div class="row">'
+
+                                data['items'].forEach(function (video) {
+                                    results += '<div class="col-md-4 mt-3"><div class="card md-4 shadow-sm">'
+                                    results += '<iframe width="100%" height="225" src="https://www.youtube.com/embed/' + video['id']['videoId'] + 'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                                    results += '<div class="card-body"><p class="card-text"> ' + video['snippet']['title'] + ' </p>';
+                                    results += '<a href="#" class="btn add_video_button" onclick="addVideo(\'' + video['id']['videoId'] + '\')">Add</a>';
+                                    results += '</div></div></div>';
+                                });
+                                results += "</div></div>"
+                                $('#search_results').append(results)
+                            }
+                        });
+                    }, 1000);
+                });
+            });
+
+            function addVideo(video_id) {
+                $('#id_url').val('https://www.youtube.com/watch?v=' + video_id);
+                $('#submit_video').submit();
+            }
+
+            /// Background Image Change on Button Click
+            $('.movie_icons').click(function () {
+                document.getElementById("random").style.backgroundImage = 'url(/static/img/banners/banner6.jpg)';
+            });
+            $('.web_icons').click(function () {
+                document.getElementById("random").style.backgroundImage = 'url(/static/img/banners/banner3.jpg)';
+            });
+            $('.comedy_icon').click(function () {
+                document.getElementById("random").style.backgroundImage = 'url(/static/img/banners/comed.jpg)';
+            });
+            $('.football_icon').click(function () {
+                document.getElementById("random").style.backgroundImage = 'url(/static/img/banners/soccer.jpg)';
+            });
+            $('.music_icon').click(function () {
+                document.getElementById("random").style.backgroundImage = 'url(/static/img/banners/music.jpg)';
+            });
+
+
+
+
+            // Background Image Change Ends  comedy_icon
+
+            $('.settings_container').click(function () {
+                $(".setting_container").animate({
+                    height: "toggle"
+                });
+            });
+        </script>
+    </div>
+
+
+    {% endblock %}
+
+
+</div>

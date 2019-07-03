@@ -1,0 +1,52 @@
+<div class="login-page" style="background-image:url('/static/img/log_bg.jpg')">
+    {% extends 'halls/base.html' %}
+    {% block content %}
+    <div class="container">
+
+        <div class="logo_top_container">
+            <a href="{% url 'home' %}"><img src="/static/img/logo.png"></a>
+        </div>
+
+        <div class="top_button_container">
+            <a href="{% url 'home' %}"><button class="myButton signup_btn"> Home</button></a>
+        </div>
+
+        <div class="main-container">
+            <div class="forms-container">
+                <h2 class="log_titles">Sign Up</h2>
+                <form method="POST" class="submit-form">
+                    <div class="forms-fields">
+                        {% csrf_token %}
+                        {% if form.non_fields_errors %}
+                        <div class="alert alert-danger">
+                            {{ form.non_field_errors }}
+                        </div>
+                        {% endif %}
+
+                        {% load widget_tweaks %}
+                        {% for field in form %}
+                        <div class="form-group {% if field.errors %}alert alert-danger{% endif %}">
+                            {{ field.erros }}
+                            {{ field.label_tag }}
+                            {% render_field field class="form-control" %}
+                            {% if field.help_text %}
+                            <small clas="alert alert-danger">
+                                {{ field.help_text|safe }}
+                            </small>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                        <button type="submit" class="submit_button">Sign up</button>
+                    </div>
+                </form>
+
+                <div class="links_container">
+                    <p class="signup_link"><a href="{% url 'login' %}">Signin</a></p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    {% endblock %}
+</div>

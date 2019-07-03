@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+{% load staticfiles %}
+
+{% if url == '/dashbard/' %}
+<style>
+  .popular_halls {
+    margin-top: 80px;
+  }
+</style>
+{% endif %}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>My Python Hall of fame</title>
+
+  <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+  <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+  <link href="{% static 'css/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+
+
+  <link rel="shortcut icon" type="image/png" href="{% static 'flavicon.ico' %}" />
+</head>
+
+<body onload="randombg()">
+
+  <div class="header-menu">
+    <!--  Mobile Menu Button-->
+    <div class="mobi_header animated ">
+      <div class="close_mobi_menu"></div>
+
+
+      <div class="user_details">
+        {% if user.is_authenticated %}
+        <img src="/static/img/user.svg" alt="">
+        <div class="username_contaiener">
+          Hi {{ user.username|capfirst }}
+        </div>
+        {% endif %}
+      </div>
+
+
+      <div class="mobi_actual_menu">
+        <ul>
+          <li><a href="{% url 'home' %}">
+              <div>
+                Home
+              </div>
+            </a></li>
+          <li><a href="{% url 'create_hall' %}">
+              <div>
+                Create Hall
+              </div>
+            </a>
+          </li>
+          <li><a href="{% url 'explore' %}">
+              <div>
+                Explore Here
+              </div>
+            </a>
+          </li>
+
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'dashboard' %}">
+              <div class="margined">
+                My Account
+              </div>
+            </a>
+          </li>
+          <li><a href="{% url 'dashboard' %}">
+              <div>
+                Dashboard
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'logout' %}">
+              <div class="special_div">
+                Log Out
+              </div>
+            </a>
+          </li>
+
+          {% else %}
+          <li><a href="{% url 'login' %}">
+              <div class="margined">
+                Log In
+              </div>
+            </a>
+          </li>
+          {% endif %}
+
+
+          {% if user.is_authenticated == False %}
+          <li>
+            <a href="{% url 'signup' %}">
+              <div class="special_div">
+                Signup
+              </div>
+            </a>
+          </li>
+          {% endif %}
+
+        </ul>
+      </div>
+
+
+
+    </div>
+
+    <div class="mobile_menu">
+      <div class="mobi_menu_bar bar1 animated slideInDown"></div>
+      <div class="mobi_menu_bar bar2 animated slideInLeft"></div>
+      <div class="mobi_menu_bar bar3 animated slideInUp"></div>
+    </div>
+    <!-- <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm"> -->
+    <div class="inner_menu_container">
+      <div class="logo_top_container">
+        <a href="{% url 'home' %}"><img src="/static/img/logo.png"></a>
+      </div>
+
+      <div class="main_menu_header">
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'create_hall' %}">Create Hall</a></li>
+          <li><a href="{% url 'explore' %}">Explore Here</a></li>
+        </ul>
+      </div>
+
+
+      <div class="right-btn">
+        {% if user.is_authenticated %}
+        <div class="username_contaiener">
+          Hi {{ user.username|capfirst }}
+        </div>
+        <div class="dropdown">
+          <div class="dropbtn"><img src="/static/img/user.svg" alt=""></div>
+          <div class="dropdown-content animaged ">
+            <ul>
+              <li><a href="{% url 'dashboard' %}">My Account</a></li>
+              <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+              <li><a href="{% url 'logout' %}">Log Out</a></li>
+            </ul>
+          </div>
+        </div>
+
+        {% else %}
+        <a href="{% url 'login' %}"><button class="myButton login_btn"> Log In</button></a> &nbsp;
+        {% endif %}
+
+        {% if user.is_authenticated == False %}
+        <a href="{% url 'signup' %}"><button class="myButton signup_btn"> Signup</button></a>
+        {% endif %}
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="separator" style="height:80px;"></div>
+
+
+  <script src="/static/js/jquery-3.3.1.min.js"></script>
+  <script src="/static/js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/static/css/bootstrap.css">
+
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+
+  <!-- <script src="https://code.jquery.com/jquery-3.4.0.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+
+  <script>
+    AOS.init(
+      {
+        once: true,
+        duration: 1200,
+      }
+    );
+
+    $(document).ready(function () {
+
+      $('.mobile_menu').click(function () {
+        $('.mobi_header').removeClass('slideOutLeft')
+        $('.mobi_header').addClass('slideInLeft')
+        $('.mobi_header').css('display', 'block')
+      })
+
+      $('.close_mobi_menu').click(function () {
+        $('.mobi_header').removeClass('slideInLeft')
+        $('.mobi_header').addClass('slideOutLeft')
+      });
+
+    })
+
+
+  </script>
+
+  {% block content %}
+  {% endblock content %}
+
+
+
+
+
+
+</body>
+
+</html>

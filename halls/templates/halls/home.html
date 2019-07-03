@@ -1,0 +1,158 @@
+{% extends 'halls/base.html' %}
+{% block content %}
+
+<style>
+    #random {
+        background-image: url('/static/img/mnn.jpg');
+    }
+</style>
+
+<div id="random" class="main_container">
+    <div class="detail-container">
+
+        <div class="mobile_heading">
+            <span>Welcome to</span>
+            <span style="color: #F9BD13;">Y</span><span style="color: #fff;">Create</span>
+        </div>
+        <div class="headings">
+            <div class="animated slideInLeft">W</div>
+            <div class="animated2 slideInLeft">e</div>
+            <div class="animated slideInLeft">l</div>
+            <div class="animated2 slideInLeft">c</div>
+            <div class="animated slideInLeft">o</div>
+            <div class="animated2 slideInLeft">m</div>
+            <div class="animated slideInLeft">e</div>
+            &nbsp;
+            <div class="animated slideInLeft">t </div>
+            <div class="animated slideInLeft">o </div>
+            <div class="animated slideInLeft" style="color: #F9BD13;"> &nbsp;Y</div>
+            <div class="animated2 slideInLeft" style="color: #fff;">C</div>
+            <div class="animated slideInLeft" style="color: #fff;">r</div>
+            <div class="animated2 slideInLeft" style="color: #fff;">e</div>
+            <div class="animated slideInLeft" style="color: #fff;">a</div>
+            <div class="animated2 slideInLeft" style="color: #fff;">t</div>
+            <div class="animated slideInLeft" style="color: #fff;">e</div>
+        </div>
+        <p>
+            <a href="{% url 'create_hall' %}" class="btn  create_hall_btn">
+                <button>
+                    Create Hall
+                </button>
+            </a>
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="home_description">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore
+            magna aliqua. Vitae elementum curabitur vitae nunc sed velit dignissim sodales ut. Non curabitur gravida
+            arcu ac
+            tortor dignissim convallis. Nulla aliquet porttitor lacus luctus accumsan tortor.
+
+            Non arcu risus quis varius quam quisque id. Pretium lectus quam id leo in vitae. Maecenas sed enim ut sem
+            viverra aliquet. Proin fermentum leo vel orci porta non. Nisl condimentum id venenatis a condimentum vitae
+        </p>
+    </div>
+</div>
+
+
+<div class="how_it_works_">
+    <div class="container">
+        <h2 class="how_first_title">HOW IT WORKS</h2>
+
+        <div class="row">
+
+            <div class="col-md-3 mt-3 ">
+                <div class="card md-4  custom_card" data-aos="fade-right">
+                    <div class="card-body">
+                        <h5 class="card-title">Sign Up </h5>
+                        <p class="card-text">
+                            Create an account with a username and password
+                            or sign in if you already have an acount
+                        </p>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'dashboard' %}" class="btn btn-primary">Sign up</a>
+                        {% else %}
+                        <a href="{% url 'signup' %}" class="btn btn-primary">Sign up</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mt-3">
+                <a href="{% url 'create_hall' %}">
+                    <div class="card md-4 custom_card" data-aos="fade-down">
+                        <div class="card-body">
+                            <h5 class="card-title">Create a Hall </h5>
+                            <p class="card-text">
+                                Create a Hall of Fame with a unique title and you
+                                will be redirected to your personal dashboad,
+                                ...
+                            </p>
+                            <p class="btn btn-primary">Create Hall</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="col-md-3 mt-3">
+
+                <a href="{% url 'dashboard' %}">
+                    <div class="card md-4 custom_card" data-aos="fade-up">
+                        <div class="card-body">
+                            <h5 class="card-title">Dashboard</h5>
+                            <p class="card-text">
+                                From your dashboard you can edit, delete or
+                                add videos according to the halls you have created
+                            </p>
+                            <p class="btn btn-primary">Dashboard</p>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+            <div class="col-md-3 mt-3">
+                <a href="{% url  'dashboard' %}">
+                    <div class="card md-4 custom_card" data-aos="fade-left">
+                        <div class="card-body">
+                            <h5 class="card-title">Add Videos</h5>
+                            <p class="card-text">
+                                Search from the textbox, scroll down to see your
+                                result and add a video to your hall
+                            </p>
+                            <p class="btn btn-primary">Add Video</p>
+                        </div>
+                    </div>
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="footer-section">
+    <p>&copy;ycreate.co.za</p>
+</div>
+
+<script>
+    function randombg() {
+        var random = Math.floor(Math.random() * 6) + 0;
+        var bigSize = [
+            "url('/static/img/banners/banner4.jpg')",
+            "url('/static/img/banners/banner2.jpg')",
+            "url('/static/img/banners/banner3.jpg')",
+            "url('/static/img/banners/banner5.jpg')",
+            "url('/static/img/banners/banner7.jpg')",
+            "url('/static/img/banners/banner6.jpg')"];
+        document.getElementById("random").style.backgroundImage = bigSize[random];
+    }
+</script>
+
+{% endblock content %}

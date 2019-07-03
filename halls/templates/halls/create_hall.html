@@ -1,0 +1,45 @@
+<div class="login-page" style="background-image:url('/static/img/log_bg.jpg')">
+
+    {% extends 'halls/base.html' %}
+    {% block content %}
+    <div class="container">
+
+        <div class="logo_top_container">
+            <a href="{% url 'home' %}"><img src="/static/img/logo.png"></a>
+        </div>
+
+        <div class="top_button_container">
+            <a href="{% url 'home' %}"><button class="myButton signup_btn"> Home</button></a>
+        </div>
+
+        <div class="main-container">
+            <div class="forms-container">
+                <h2 class="log_titles"> Create Hall of Fame </h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    {% load widget_tweaks %}
+                    <div class="forms-fields">
+                        {% for field in form %}
+                        <div class="form-group {% if field.errors %}alert alert-danger{% endif %}">
+                            {{ field.erros }}
+                            {{ field.label_tag }}
+                            {% render_field field class="form-control" %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button type="submit" class="submit_button">Create Hall </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block footer-js %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            alert('Hello')
+        })
+    </script>
+    {% endblock footer-js %}
+
+</div>
