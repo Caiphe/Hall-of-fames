@@ -16,7 +16,7 @@ from random import randint
 
 # from django.forms import formset_factory
 
-youtube_api_key = 'AIzaSyCNkN1W8sbOAp4_okm2SwiyQt39GqxgGos'
+youtube_api_key = '{ Your google API key }'
 
 def home(request):
     recent_halls = Hall.objects.all().order_by('-id')[:3]
